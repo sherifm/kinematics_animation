@@ -1,0 +1,164 @@
+<?xml version="1.0" ?>
+<robot name="wam" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Includea all the WAM stuff -->
+  <material name="WAMGrey">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+  <!-- Root link is in the world frame-->
+  <link name="world"/>
+  <!-- 7-DOF Wam -->
+  <joint name="wam_fixed_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+  </joint>
+  <link name="base_link">
+    <visual>
+      <material name="WAMGrey">
+        <color rgba="0.7 0.7 0.7 0.0"/>
+      </material>
+      <geometry>
+        <mesh filename="package://barrett_model/models/sw_meshes/base_link_fine.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="base_yaw_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="shoulder_yaw_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.346"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="60" lower="-2.6" upper="2.6" velocity="2.0"/>
+  </joint>
+  <link name="shoulder_yaw_link">
+    <visual>
+      <material name="WAMGrey">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+      </material>
+      <geometry>
+        <mesh filename="package://barrett_model/models/sw_meshes/shoulder_link_fine.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="shoulder_pitch_joint" type="revolute">
+    <parent link="shoulder_yaw_link"/>
+    <child link="shoulder_pitch_link"/>
+    <origin rpy="-1.57079632679 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="60" lower="-1.985" upper="1.985" velocity="2.0"/>
+  </joint>
+  <link name="shoulder_pitch_link">
+    <visual>
+      <material name="WAMGrey">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+      </material>
+      <geometry>
+        <mesh filename="package://barrett_model/models/sw_meshes/shoulder_pitch_link_fine.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="shoulder_yaw_joint" type="revolute">
+    <parent link="shoulder_pitch_link"/>
+    <child link="upper_arm_link"/>
+    <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="45" lower="-2.8" upper="2.8" velocity="2.0"/>
+  </joint>
+  <link name="upper_arm_link">
+    <visual>
+      <material name="WAMGrey">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+      </material>
+      <geometry>
+        <mesh filename="package://barrett_model/models/sw_meshes/upper_arm_link_fine.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="elbow_pitch_joint" type="revolute">
+    <parent link="upper_arm_link"/>
+    <child link="forearm_link"/>
+    <origin rpy="-1.57079632679 0 0" xyz="0.045 0 0.55"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="30" lower="-0.9" upper="3.14159265359" velocity="2.00"/>
+  </joint>
+  <link name="forearm_link">
+    <visual>
+      <material name="WAMGrey">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+      </material>
+      <geometry>
+        <mesh filename="package://barrett_model/models/sw_meshes/elbow_link_fine.stl"/>
+      </geometry>
+    </visual>
+    <visual>
+      <material name="WAMGrey">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+      </material>
+      <origin rpy="1.57079632679 0 0" xyz="-0.045 -0.0730 0"/>
+      <geometry>
+        <mesh filename="package://barrett_model/models/sw_meshes/forearm_link_fine.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="wrist_yaw_joint" type="revolute">
+    <parent link="forearm_link"/>
+    <child link="wrist_yaw_link"/>
+    <origin rpy="1.57079632679 0 0" xyz="-0.045 -0.3 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" lower="-4.55" upper="1.25" velocity="2.0"/>
+  </joint>
+  <link name="wrist_yaw_link">
+    <visual>
+      <material name="WAMGrey">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://barrett_model/models/sw_meshes/wrist_yaw_link_fine.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="wrist_pitch_joint" type="revolute">
+    <parent link="wrist_yaw_link"/>
+    <child link="wrist_pitch_link"/>
+    <origin rpy="-1.57079632679 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" lower="-1.5707" upper="1.5707" velocity="2.00"/>
+  </joint>
+  <link name="wrist_pitch_link">
+    <visual>
+      <material name="WAMGrey">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+      </material>
+      <geometry>
+        <mesh filename="package://barrett_model/models/sw_meshes/wrist_pitch_link_fine.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="palm_yaw_joint" type="revolute">
+    <parent link="wrist_pitch_link"/>
+    <child link="wrist_palm_link"/>
+    <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" lower="-3.0" upper="3.0" velocity="2.00"/>
+    <!-- 2.95 is a limit taken in from 3 due to saftey and differences between arms. -->
+  </joint>
+  <link name="wrist_palm_link">
+    <visual>
+      <material name="WAMGrey">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://barrett_model/models/sw_meshes/wrist_palm_link_fine.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="wrist_palm_stump_joint" type="fixed">
+    <parent link="wrist_palm_link"/>
+    <child link="wrist_palm_stump_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.06"/>
+  </joint>
+  <link name="wrist_palm_stump_link">
+  </link>
+</robot>
+

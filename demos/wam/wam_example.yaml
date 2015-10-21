@@ -1,0 +1,9 @@
+zeros:
+  base_yaw_joint: -0.12
+  shoulder_pitch_joint: 0.93
+  shoulder_yaw_joint: 0.26
+  elbow_pitch_joint: 0.71
+  wrist_yaw_joint: -1.07
+  wrist_pitch_joint: -0.3
+  palm_yaw_joint: 2.04
+

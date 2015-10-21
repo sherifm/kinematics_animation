@@ -1,0 +1,36 @@
+<launch>
+  <!-- define args -->
+  <arg name="model" default="$(find kinematics_animation)/urdf/ur5_robot.urdf" />
+  <arg name="file"  default="$(find kinematics_animation)/demos/ur5/ur5_example.yaml" />
+  <arg name="vis" default="true" /> <!-- run rviz? -->
+  <arg name="gui" default="true" /> <!-- run joint_state gui? -->
+  <arg name="freq" default="50.0" />
+  <arg name="rate" default="1.0" />
+       
+  <!-- define params -->
+  <param name="use_gui" value="$(arg gui)"/>
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
+
+  <!-- robot state publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
+  <!-- joint state publisher, must set anim=false for proper functionality -->
+  <group if="$(arg gui)">
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <param name="use_gui" value="true" />
+  </group>
+
+  <!-- rviz if needed -->
+  <group if="$(arg vis)">
+    <node pkg="rviz" type="rviz" respawn="false" name="rviz" 
+    args="-d $(find kinematics_animation)/demos/ur5/ur5_rviz_config.rviz" />
+  </group>
+  
+  <!--load joint angle parameters-->
+  <rosparam command="load" file="$(arg file)"/>
+
+  <!-- set default window sizes and locations -->
+  <node pkg="kinematics_animation" type="kin_set_windows.sh" name="wmctrl" output="log" respawn="false" />
+</launch>
+
+  

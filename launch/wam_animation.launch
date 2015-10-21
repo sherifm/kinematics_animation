@@ -1,0 +1,41 @@
+<launch>
+  <!-- define args -->
+  <arg name="model" default="$(find kinematics_animation)/urdf/wam7.urdf" />
+  <arg name="file"  default="$(find kinematics_animation)/demos/wam/wam7_jointstates.csv" />
+  <arg name="vis" default="true" /> <!-- run rviz? -->
+  <arg name="gui" default="false" /> <!-- run joint_state gui? -->
+  <arg name="anim" default="true" /> <!-- run animator? -->
+  <arg name="freq" default="50.0" />
+  <arg name="rate" default="1.0" />
+       
+  <!-- define params -->
+  <param name="use_gui" value="$(arg gui)"/>
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
+
+  <!-- robot state publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
+  <!-- joint state publisher, must set anim=false for proper functionality -->
+  <group if="$(arg gui)">
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <param name="use_gui" value="true" />
+  </group>
+
+  <!-- rviz if needed -->
+  <group if="$(arg vis)">
+    <node pkg="rviz" type="rviz" respawn="false" name="rviz"
+    args="-d $(find kinematics_animation)/demos/wam/wam_rviz_config.rviz" />
+  </group>
+
+  <!-- Animation from csv player-->
+  <group if="$(arg anim)">
+    <node pkg="kinematics_animation" type="csv_player.py" name="csv_animation" respawn="true">
+	  <param name="file" value="$(arg file)" />
+	  <param name="freq" value="$(arg freq)" />
+    <param name="rate" value="$(arg rate)" />
+    </node>
+  </group>
+  
+</launch>
+
+  
