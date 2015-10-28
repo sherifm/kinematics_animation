@@ -6,6 +6,8 @@
   </material>
   <!-- Root link is in the world frame-->
   <link name="world"/>
+  <!--Added another base for 449 class-->
+  <link name="base"/> 
   <!-- 7-DOF Wam -->
   <joint name="wam_fixed_joint" type="fixed">
     <parent link="world"/>
@@ -22,12 +24,17 @@
       </geometry>
     </visual>
   </link>
-  <joint name="base_yaw_joint" type="revolute">
+  <!--Added for 449 Class-->
+  <joint name="shoulder_fixed_joint" type="fixed">
     <parent link="base_link"/>
+    <child link="base"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.346"/>
+  </joint>
+  <joint name="base_yaw_joint" type="continuous">
+    <parent link="base"/>
     <child link="shoulder_yaw_link"/>
-    <origin rpy="0 0 0" xyz="0 0 0.346"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="60" lower="-2.6" upper="2.6" velocity="2.0"/>
   </joint>
   <link name="shoulder_yaw_link">
     <visual>
@@ -39,12 +46,11 @@
       </geometry>
     </visual>
   </link>
-  <joint name="shoulder_pitch_joint" type="revolute">
+  <joint name="shoulder_pitch_joint" type="continuous">
     <parent link="shoulder_yaw_link"/>
     <child link="shoulder_pitch_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="60" lower="-1.985" upper="1.985" velocity="2.0"/>
   </joint>
   <link name="shoulder_pitch_link">
     <visual>
@@ -56,12 +62,11 @@
       </geometry>
     </visual>
   </link>
-  <joint name="shoulder_yaw_joint" type="revolute">
+  <joint name="shoulder_yaw_joint" type="continuous">
     <parent link="shoulder_pitch_link"/>
     <child link="upper_arm_link"/>
     <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="45" lower="-2.8" upper="2.8" velocity="2.0"/>
   </joint>
   <link name="upper_arm_link">
     <visual>
@@ -73,12 +78,11 @@
       </geometry>
     </visual>
   </link>
-  <joint name="elbow_pitch_joint" type="revolute">
+  <joint name="elbow_pitch_joint" type="continuous">
     <parent link="upper_arm_link"/>
     <child link="forearm_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="0.045 0 0.55"/>
     <axis xyz="0 0 1"/>
-    <limit effort="30" lower="-0.9" upper="3.14159265359" velocity="2.00"/>
   </joint>
   <link name="forearm_link">
     <visual>
@@ -99,12 +103,11 @@
       </geometry>
     </visual>
   </link>
-  <joint name="wrist_yaw_joint" type="revolute">
+  <joint name="wrist_yaw_joint" type="continuous">
     <parent link="forearm_link"/>
     <child link="wrist_yaw_link"/>
     <origin rpy="1.57079632679 0 0" xyz="-0.045 -0.3 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="10" lower="-4.55" upper="1.25" velocity="2.0"/>
   </joint>
   <link name="wrist_yaw_link">
     <visual>
@@ -117,12 +120,11 @@
       </geometry>
     </visual>
   </link>
-  <joint name="wrist_pitch_joint" type="revolute">
+  <joint name="wrist_pitch_joint" type="continuous">
     <parent link="wrist_yaw_link"/>
     <child link="wrist_pitch_link"/>
     <origin rpy="-1.57079632679 0 0" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="10" lower="-1.5707" upper="1.5707" velocity="2.00"/>
   </joint>
   <link name="wrist_pitch_link">
     <visual>
@@ -134,12 +136,11 @@
       </geometry>
     </visual>
   </link>
-  <joint name="palm_yaw_joint" type="revolute">
+  <joint name="palm_yaw_joint" type="continuous">
     <parent link="wrist_pitch_link"/>
     <child link="wrist_palm_link"/>
     <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="10" lower="-3.0" upper="3.0" velocity="2.00"/>
     <!-- 2.95 is a limit taken in from 3 due to saftey and differences between arms. -->
   </joint>
   <link name="wrist_palm_link">

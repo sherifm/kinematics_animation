@@ -12,12 +12,10 @@
       </material>
     </visual>
   </link>
-  <joint name="shoulder_pan_joint" type="revolute">
+  <joint name="shoulder_pan_joint" type="continuous">
     <parent link="base_link"/>
     <child link="shoulder_link"/>
     <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.089159"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="150.0" lower="-6.2831853" upper="6.2831853" velocity="3.15"/>
   </joint>
   <link name="shoulder_link">
     <visual>
@@ -29,12 +27,11 @@
       </material>
     </visual>
   </link>
-  <joint name="shoulder_lift_joint" type="revolute">
+  <joint name="shoulder_lift_joint" type="continuous">
     <parent link="shoulder_link"/>
     <child link="upper_arm_link"/>
     <origin rpy="0.0 1.570796325 0.0" xyz="0.0 0.13585 0.0"/>
     <axis xyz="0 1 0"/>
-    <limit effort="150.0" lower="-6.2831853" upper="6.2831853" velocity="3.15"/>
   </joint>
   <link name="upper_arm_link">
     <visual>
@@ -46,12 +43,11 @@
       </material>
     </visual>
   </link>
-  <joint name="elbow_joint" type="revolute">
+  <joint name="elbow_joint" type="continuous">
     <parent link="upper_arm_link"/>
     <child link="forearm_link"/>
     <origin rpy="0.0 0.0 0.0" xyz="0.0 -0.1197 0.425"/>
     <axis xyz="0 1 0"/>
-    <limit effort="150.0" lower="-6.2831853" upper="6.2831853" velocity="3.15"/>
   </joint>
   <link name="forearm_link">
     <visual>
@@ -63,12 +59,11 @@
       </material>
     </visual>
   </link>
-  <joint name="wrist_1_joint" type="revolute">
+  <joint name="wrist_1_joint" type="continuous">
     <parent link="forearm_link"/>
     <child link="wrist_1_link"/>
     <origin rpy="0.0 1.570796325 0.0" xyz="0.0 0.0 0.39225"/>
     <axis xyz="0 1 0"/>
-    <limit effort="28.0" lower="-6.2831853" upper="6.2831853" velocity="3.2"/>
   </joint>
   <link name="wrist_1_link">
     <visual>
@@ -80,12 +75,11 @@
       </material>
     </visual>
   </link>
-  <joint name="wrist_2_joint" type="revolute">
+  <joint name="wrist_2_joint" type="continuous">
     <parent link="wrist_1_link"/>
     <child link="wrist_2_link"/>
     <origin rpy="0.0 0.0 0.0" xyz="0.0 0.093 0.0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="28.0" lower="-6.2831853" upper="6.2831853" velocity="3.2"/>
   </joint>
   <link name="wrist_2_link">
     <visual>
@@ -97,12 +91,11 @@
       </material>
     </visual>
   </link>
-  <joint name="wrist_3_joint" type="revolute">
+  <joint name="wrist_3_joint" type="continuous">
     <parent link="wrist_2_link"/>
     <child link="wrist_3_link"/>
     <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.09465"/>
     <axis xyz="0 1 0"/>
-    <limit effort="28.0" lower="-6.2831853" upper="6.2831853" velocity="3.2"/>
   </joint>
   <link name="wrist_3_link">
     <visual>
