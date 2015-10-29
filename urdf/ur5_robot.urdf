@@ -16,6 +16,7 @@
     <parent link="base_link"/>
     <child link="shoulder_link"/>
     <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.089159"/>
+    <axis xyz="0 0 1"/>
   </joint>
   <link name="shoulder_link">
     <visual>
