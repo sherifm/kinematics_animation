@@ -34,21 +34,21 @@ import numpy as np
 #     "wam/palm_yaw_joint"
 #     ]
 
-#universal ur5 joints 
-#joint_names = [
-#     "shoulder_pan_joint",
-#     "shoulder_lift_joint",
-#     "elbow_joint",
-#     "wrist_1_joint",
-#     "wrist_2_joint",
-#     "wrist_3_joint"
-#     ]
+# universal ur5 joints 
+joint_names = [
+    "shoulder_pan_joint",
+    "shoulder_lift_joint",
+    "elbow_joint",
+    "wrist_1_joint",
+    "wrist_2_joint",
+    "wrist_3_joint"
+    ]
 
 #trep demo robot
-joint_names = [
-     "joint1",
-     "joint2"
-     ]
+# joint_names = [
+#      "joint1",
+#      "joint2"
+#      ]
 
 
 DT = 0.1
