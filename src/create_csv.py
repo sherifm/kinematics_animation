@@ -67,8 +67,8 @@ for i,t in enumerate(tvec):
     tmpdat[0] = t
     tmpdat[1] = j1func(t)
     tmpdat[2] = j2func(t)
-#    tmpdat[3] = j3func(t)
-#    tmpdat[4] = j4func(t)
+    tmpdat[3] = j3func(t)
+    tmpdat[4] = j4func(t)
     dat[i] = tmpdat
 
 # fd = open("/home/jarvis/me495_indigows/src/kinematics_animation/data/jointstates.csv",'w')
