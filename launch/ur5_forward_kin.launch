@@ -1,7 +1,7 @@
 <launch>
   <!-- define args -->
   <arg name="model" default="$(find kinematics_animation)/urdf/ur5_robot.urdf" />
-  <arg name="file"  default="$(find kinematics_animation)/demos/ur5/ur5_example.yaml" />
+  <arg name="file"  default="$(find kinematics_animation)/demos/ur5/ur5_home.yaml" />
   <arg name="vis" default="true" /> <!-- run rviz? -->
   <arg name="gui" default="true" /> <!-- run joint_state gui? -->
   <arg name="freq" default="50.0" />
