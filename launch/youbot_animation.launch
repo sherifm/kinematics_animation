@@ -1,8 +1,8 @@
 <launch>
   <!-- define args -->
-  <arg name="model" default="$(find kinematics_animation)/urdf/ur5_robot.urdf" />
-  <arg name="file"  default="$(find kinematics_animation)/demos/ur5/ur5_jointstates.csv" />
-  <arg name="vis" default="false" /> <!-- run rviz? -->
+  <arg name="model" default="$(find kinematics_animation)/urdf/youbot.urdf" />
+  <arg name="file"  default="$(find kinematics_animation)/demos/youbot/youbot_jointstates.csv" />
+  <arg name="vis" default="true" /> <!-- run rviz? -->
   <arg name="gui" default="false" /> <!-- run joint_state gui? -->
   <arg name="anim" default="true" /> <!-- run animator? -->
   <arg name="freq" default="50.0" />
@@ -35,16 +35,7 @@
     <param name="rate" value="$(arg rate)" />
     </node>
   </group>
-  	
-  <!-- start tf2 web republisher -->
-  <node pkg="tf2_web_republisher" type="tf2_web_republisher" name="tf2_web_republisher" />
-
-  <!-- start robot web server -->
-  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
-  	<arg name="port" value="9090"/>
-  </include>
-
-
+  
 </launch>
 
   

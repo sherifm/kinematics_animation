@@ -5,23 +5,23 @@ import numpy as np
 
 
 #Kuka youbot joints
-#joint_names = [
-#    "arm_joint_1",
-#    "arm_joint_2",
-#    "arm_joint_3",
-#    "arm_joint_4",
-#    "arm_joint_5",
-#    "caster_joint_fl",
-#    "wheel_joint_fl",
-#    "caster_joint_fr",
-#    "wheel_joint_fr",
-#    "caster_joint_bl",
-#    "wheel_joint_bl",
-#    "caster_joint_br",
-#    "wheel_joint_br",
-#    "gripper_finger_joint_l",
-#    "gripper_finger_joint_r",
-#]
+joint_names = [
+   "arm_joint_1",
+   "arm_joint_2",
+   "arm_joint_3",
+   "arm_joint_4",
+   "arm_joint_5",
+   "caster_joint_fl",
+   "wheel_joint_fl",
+   "caster_joint_fr",
+   "wheel_joint_fr",
+   "caster_joint_bl",
+   "wheel_joint_bl",
+   "caster_joint_br",
+   "wheel_joint_br",
+   "gripper_finger_joint_l",
+   "gripper_finger_joint_r",
+]
 
 #Barret wam7 joints
 #joint_names = [
@@ -35,14 +35,14 @@ import numpy as np
 #     ]
 
 # universal ur5 joints 
-joint_names = [
-    "shoulder_pan_joint",
-    "shoulder_lift_joint",
-    "elbow_joint",
-    "wrist_1_joint",
-    "wrist_2_joint",
-    "wrist_3_joint"
-    ]
+# joint_names = [
+#     "shoulder_pan_joint",
+#     "shoulder_lift_joint",
+#     "elbow_joint",
+#     "wrist_1_joint",
+#     "wrist_2_joint",
+#     "wrist_3_joint"
+#     ]
 
 #trep demo robot
 # joint_names = [
