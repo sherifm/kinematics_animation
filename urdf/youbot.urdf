@@ -13,9 +13,7 @@
   <!-- youbot arm -->
   <!-- reduction ratio doesn't affect the model-->
   <!-- reduction ratio must not to be 0-->
-  &gt;
 
-	
   <!-- common properties -->
   <!-- arm limits positions (deg) -->
   <!-- dynamic properties : mass (kg) Alu data sheet -->
