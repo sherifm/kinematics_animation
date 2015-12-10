@@ -2,6 +2,7 @@
   <!-- define args -->
   <arg name="model" default="$(find pr2_description)/robots/pr2.urdf.xacro" />
   <arg name="file"  default="$(find kinematics_animation)/demos/pr2/pr2_jointstates.csv" />
+  <arg name="ws_port"  default="9090" />
   <arg name="vis" default="false" /> <!-- run rviz? -->
   <arg name="gui" default="false" /> <!-- run joint_state gui? -->
   <arg name="anim" default="true" /> <!-- run animator? -->
@@ -41,7 +42,7 @@
 
   <!-- start robot web server -->
   <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
-  	<arg name="port" value="9090"/>
+  	<arg name="port" value="$(arg ws_port)"/>
   </include>
 
 
