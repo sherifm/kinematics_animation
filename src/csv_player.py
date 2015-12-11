@@ -37,7 +37,7 @@ class KinematicsAnimator( object ):
         try :
             q = self._fint(t)
         except ValueError:
-            q = self._fint.y[-1]
+            q = self._fint(self._fint.x[-1])
             if (t - self._fint.x[-1]) > 2.0:
                 rospy.loginfo("Resetting animation!")
                 self.base_time = rospy.Time.now()
